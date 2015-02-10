@@ -1,0 +1,1 @@
+$('#low_category_image_<%= @low_category_image.id %>').remove()

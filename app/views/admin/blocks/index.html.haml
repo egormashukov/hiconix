@@ -1,0 +1,24 @@
+.table-wrapper#blocks_table
+  = index_header("blocks")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("blocks", "add"), [:new, :admin, :block], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+          %th= Block.human_attribute_name("title")
+          %th
+      %tbody
+        - @blocks.each do |block|
+          %tr{id: "block_#{block.id}"}
+
+            %td= block.title
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, block], class: 'edit_block'
+                - unless block.untouchable?
+                  %li= delete_link(block)
+

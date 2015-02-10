@@ -1,0 +1,5 @@
+.row
+  %table.table.table-hover#page_blocks_table
+    %tbody= render @page_blocks
+
+= multiple_sortable('page_blocks_table', sort_admin_page_blocks_path)

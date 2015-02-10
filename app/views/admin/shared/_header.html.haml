@@ -1,0 +1,8 @@
+.navbar-header
+  .navbar-brand= rdws_link
+
+= render "admin/shared/top_nav"
+%ul.nav.navbar-nav.pull-right.hidden-xs
+  %li.settings.hidden-xs.hidden-sm
+    = link_to destroy_user_session_path, method: :delete, role: 'button', title: t(:log_out) do 
+      %i.icon-share-alt

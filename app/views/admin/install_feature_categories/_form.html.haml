@@ -1,0 +1,7 @@
+= form_for [:admin, InstallFeatureCategory.new], builder: AdminAddonFormBuilder, remote: true do |f|
+  .row
+    .col-md-9= f.select :install_feature_id, options_for_select(InstallFeature.has_not_that_category(category.id)), {}, class: "select2"
+    .col-md-3
+      = f.hidden_field :category_id, value: category.id
+      = f.submit t(:add), class: 'btn btn-primary'
+%br

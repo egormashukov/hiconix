@@ -1,0 +1,14 @@
+%tr{id: "page_block_#{page_block.id}"}
+
+  %td.icon= position_handler(page_block)
+  %td.icon
+    - unless page_block.block.untouchable?
+      = toggle_visible_link(page_block)
+  %td= link_to page_block.block.title, [:edit, :admin, page_block.block]
+  %td
+    = form_for [:admin, page_block], remote: true do |f|
+      = f.select :list_style, PageBlock.list_style_options_for_select, {selected: page_block.list_style}, {class: 'js-autosubmit'}
+
+  %td.actions_td
+    - unless page_block.block.untouchable? || page_block.page.main?
+      = remote_delete_link(page_block)

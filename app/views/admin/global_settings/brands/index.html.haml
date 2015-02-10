@@ -1,0 +1,32 @@
+.table-wrapper#brands_table
+  = index_header('brands')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("brands", "add"), [:new, :admin, :global_settings, :brand], class: "btn-flat success new-user"
+  .row
+    = form_tag [:change_visible, :admin, :global_settings, :brands], method: :put do
+      %table.table.table-hover.filterable
+        %thead
+          %tr
+            %th.icon.sort_th
+            %th.icon
+            %th.sort_th= Brand.human_attribute_name("brand")
+            %th
+        %tbody
+          - @brands.each do |brand|
+            %tr{id: "brand_#{brand.id}"}
+
+              %td.icon= position_handler(brand)
+
+              %td.icon= admin_icon(brand)
+
+              %td= brand.title.presence || brand.brand.try(:title)
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, :global_settings, brand], class: 'edit_brand'
+                  %li= link_to t(:destroy), [:admin, :global_settings, brand], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+      = visible_buttons
+
+
+= multiple_sortable('brands_table', sort_admin_global_settings_brands_path)

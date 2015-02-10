@@ -1,0 +1,10 @@
+.table-wrapper#category_menu_items_table
+  = index_header("category_menu_items")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("category_menu_items", "add"), [:new, :admin, :category_menu_item], class: "btn-flat success new-product"
+  .row
+
+  = show_tree(@category_menu_items, true)
+  = sort_tree(sort_admin_category_menu_items_path, '0')

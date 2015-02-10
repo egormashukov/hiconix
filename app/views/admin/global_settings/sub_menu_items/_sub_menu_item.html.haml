@@ -1,0 +1,7 @@
+%tr{id: "sub_menu_item_#{sub_menu_item.id}"}
+
+  %td.icon= position_handler(sub_menu_item)
+  %td= link_to sub_menu_item.title, [:edit, :admin, :global_settings, sub_menu_item.global_menu_item, sub_menu_item]
+
+  -#%td.actions_td= remote_delete_link(sub_menu_item)
+  %td.actions_td= link_to t(:destroy), [:admin, :global_settings, sub_menu_item], method: :delete, remote: true, data: {confirm: t('confirm.delete')}, class: 'delete_link'

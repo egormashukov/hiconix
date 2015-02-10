@@ -1,0 +1,9 @@
+%tr{id: "install_feature_product_set_#{install_feature_product_set.id}"}
+
+  %td.icon= position_handler(install_feature_product_set)
+  
+
+  %td.icon= toggle_visible_link(install_feature_product_set)
+  
+  %td= install_feature_product_set.install_feature.title
+  %td.actions_td= remote_delete_link(install_feature_product_set)

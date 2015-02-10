@@ -1,0 +1,14 @@
+= form_for [:admin, @brand_link], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  = f.text_field_inline :link
+  = f.select_inline :brand_id, Brand.all.collect{|b| [b.title, b.id]}
+  = f.image_field :image
+  = f.image_field :icon_hover
+  = f.image_field :slide_image
+  
+  = f.text_area_inline :slide_body, rows: 10
+
+  = f.submit_actions

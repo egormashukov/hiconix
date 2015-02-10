@@ -1,0 +1,26 @@
+.table-wrapper#settings_table
+  = index_header("settings")
+  .row.filter-block
+    .pull-right
+      = search_field
+      -#= link_to action_accusative("settings", "add"), [:new, :admin, :setting], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+          %th= Setting.human_attribute_name("title")
+          %th= Setting.human_attribute_name("value")
+          %th= Setting.human_attribute_name("description")
+          %th
+      %tbody
+        - @settings.each do |setting|
+          %tr{id: "setting_#{setting.id}"}
+
+            %td= setting.title
+            %td= setting.value
+            %td= setting.description
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, setting], class: 'edit_setting'
+

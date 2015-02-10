@@ -1,0 +1,32 @@
+.table-wrapper#global_menu_items_table
+  = index_header("global_menu_items")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("global_menu_items", "add"), [:new, :admin, :global_settings, :global_menu_item], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+          %th.icon.sort_th
+          %th= GlobalMenuItem.human_attribute_name("title")
+          %th= GlobalMenuItem.human_attribute_name("caption")
+          %th= GlobalMenuItem.human_attribute_name("url")
+          %th
+      %tbody
+        - @global_menu_items.each do |global_menu_item|
+          %tr{id: "global_menu_item_#{global_menu_item.id}"}
+
+            %td.icon= position_handler(global_menu_item)
+
+            %td= global_menu_item.title
+            %td= strip_tags global_menu_item.caption
+            %td= global_menu_item.url
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, :global_settings, global_menu_item], class: 'edit_global_menu_item'
+                -#%li= delete_link(global_menu_item)
+                %li= link_to t(:destroy), [:admin, :global_settings, global_menu_item], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+
+= multiple_sortable('global_menu_items_table', sort_admin_global_settings_global_menu_items_path)

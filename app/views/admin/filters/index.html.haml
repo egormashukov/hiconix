@@ -1,0 +1,26 @@
+.table-wrapper#filters_table
+  = index_header('filters')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("filters", "add"), [:new, :admin, :filter], class: "btn-flat success new-user"
+  .row
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %th.icon.sort_th
+          %th.sort_th= Filter.human_attribute_name("filter")
+          %th.icon
+          %th.icon
+      %tbody
+        - @filters.each do |filter|
+          %tr{id: "filter_#{filter.id}"}
+            %td.icon
+            %td.icon= position_handler(filter)
+            %td= filter.title.presence
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, filter], class: 'edit_filter'
+                = delete_link(filter)
+
+= multiple_sortable('filters_table', sort_admin_filters_path)

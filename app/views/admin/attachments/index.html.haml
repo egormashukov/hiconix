@@ -1,0 +1,12 @@
+.table-wrapper#pages_table
+  = index_header("attachments")
+  .row.filter-block
+    .pull-right= search_field
+  .row
+
+    %table.table.table-hover.filterable
+      %tbody
+        - @attachments.each do |attachment|
+          %tr
+            %td= link_to attachment.file_location_url, attachment.file_location_url, target: "_blank"
+            %td= attachment.created_at.strftime("%H:%M, %d.%m")

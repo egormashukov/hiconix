@@ -1,0 +1,6 @@
+.gallery_image{:id => "content_image_#{content_image.id}"}
+  = link_to [:edit, :admin, content_image] do
+    = image_tag(content_image.image_url(:admin_mini), class: "admin_mini")
+  .image_control_panel.clearfix
+
+    = delete_link_iconed(content_image)

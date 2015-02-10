@@ -1,0 +1,8 @@
+= form_for [:admin, PageBlock.new], remote: true do |f|
+  .row
+    .col-md-9
+      = f.select :block_id, Block.has_not_that_page(page.id), {}, class: 'select2'
+    .col-md-3
+      = f.hidden_field :page_id, value: page.id
+      = f.submit t(:add), class: 'btn btn-primary'
+%br

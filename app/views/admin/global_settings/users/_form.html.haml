@@ -1,0 +1,9 @@
+= form_for [:admin, :global_settings, @user], builder: AdminFormBuilder do |f|
+  = f.error_messages
+  = f.text_field_inline :name
+  = f.text_field_inline :email
+  = f.text_field_inline :password
+  = f.text_field_inline :password_confirmation
+  = f.select_inline :authorization_profile_id, AuthorizationProfile.for_select
+
+  = f.submit_actions

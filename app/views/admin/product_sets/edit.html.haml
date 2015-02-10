@@ -1,0 +1,13 @@
+-#= edit_header(action_accusative("product_sets", "edit"), :product_sets)
+-#= to_site_link(@product_set)
+.row.form-wrapper
+  .col-md-12= render 'form'
+= content_for :page_sidebar_half do
+
+  %h3= plural_name('install_features')
+
+  #install_feature_product_sets_form= render 'admin/install_feature_product_sets/form', product_set: @product_set
+
+  = render 'admin/install_feature_product_sets/install_feature_product_sets_table'
+
+  = link_to t(:create_new), new_admin_install_feature_path(product_set_id: @product_set.id), class: 'btn btn-primary', id: 'create_new_install_feature'

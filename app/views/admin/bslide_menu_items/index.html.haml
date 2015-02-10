@@ -1,0 +1,28 @@
+.table-wrapper#bslide_menu_items_table
+  = index_header("bslide_menu_items")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("bslide_menu_items", "add"), [:new, :admin, :bslide_menu_item], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+          %th.icon.sort_th
+          %th= BslideMenuItem.human_attribute_name("title")
+          %th= BslideMenuItem.human_attribute_name("url")
+          %th
+      %tbody
+        - @bslide_menu_items.each do |bslide_menu_item|
+          %tr{id: "bslide_menu_item_#{bslide_menu_item.id}"}
+
+            %td.icon= position_handler(bslide_menu_item)
+            %td= bslide_menu_item.title
+            %td= bslide_menu_item.url
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, bslide_menu_item], class: 'edit_bslide_menu_item'
+                %li= delete_link(bslide_menu_item)
+
+= multiple_sortable('bslide_menu_items_table', sort_admin_bslide_menu_items_path)

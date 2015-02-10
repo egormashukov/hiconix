@@ -1,0 +1,8 @@
+%ul#dashboard-menu
+  %li{class: active_on('settings')}= link_to_nav plural_name('settings'), [:admin, :aux, :settings], 'icon-link'
+  %li{class: active_on('slides')}= link_to_nav t(:aux_main_page), [:admin, :aux, :slides], 'icon-link'
+  %li{class: active_on('low_categories')}= link_to_nav plural_name('categories'), [:admin, :aux, :low_categories], 'icon-link'
+  %li{class: active_on('components')}= link_to_nav plural_name('components'), [:admin, :aux, :components], 'icon-link'
+  %li{class: active_on('nodes')}= link_to_nav plural_name('nodes'), [:admin, :aux, :nodes], 'icon-link'
+  %li{class: active_on('dealers')}= link_to_nav plural_name('dealers'), [:admin, :aux, :dealers], 'icon-link'
+  %li{class: active_on('supports')}= link_to_nav t(:support), [:admin, :aux, :supports], 'icon-link'

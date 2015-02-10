@@ -1,0 +1,30 @@
+= nested_form_for [:admin, @low_category], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  = f.select_inline :brand_id, CatalogueBrandLink.all.collect{|b| [b.title, b.id]}, {include_blank: true}
+  = f.select_inline :folder_id, Folder.all.collect{|b| [b.title, b.id]}, {include_blank: true}
+  = f.redactor :description
+  = f.text_area_inline :teaser_desc, rows: 4
+  = f.checkbox_inline :child_desc_mode
+  = f.checkbox_inline :table_mode
+  = f.image_field :image
+
+  %h3= LowCategory.human_attribute_name('category_settings')
+  %br
+  = f.fields_for :category_settings do |c|
+    %h4= c.object.low_level_category.try(:title)
+    %br
+    = c.checkbox_inline :visible
+    = c.checkbox_inline :title_visible
+    = c.select_inline :profile_id, Profile.all.collect {|p| [p.title, p.id]}
+    = c.text_field_inline :prefix
+
+  -# TODO: UNCOMMENT AND TEST
+  -#.form-row
+  -#  .span3.pull-right.bold= f.label :attachments
+  -#  .span6
+  -#    .dropzone#dropzone.upper{:data => {'low-category-id' => @low_category.id}}
+
+  = f.submit_actions

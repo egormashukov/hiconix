@@ -1,0 +1,2 @@
+class Xxx < FeedbackRequest
+end

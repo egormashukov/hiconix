@@ -1,0 +1,20 @@
+= form_for [:admin, @filter], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  = f.text_field_inline :title
+  = f.select_inline :property_id, Property.properties_for_select
+
+  - unless @filter.new_record?
+    - if @filter.property.editable_measurement_unit?
+      = f.select_inline :widget, Filter::NOT_DIMENSIONAL_WIDGETS
+    - else
+      = f.select_inline :widget, Filter::DIMENSIONAL_WIDGETS
+      - @filter.property.dimensional_units_for_curr_filter.each_with_index do |p, i|
+        .field-box
+          .col-md-2
+            = Filter.human_attribute_name('measurement_units') if i == 0
+          .col-md-10
+            = f.check_box :measurement_units, {multiple: true}, p
+            = p
+
+  = f.submit_actions

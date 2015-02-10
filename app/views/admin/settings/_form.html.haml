@@ -1,0 +1,14 @@
+= form_for [:admin, @setting], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  .field-box
+    .col-md-2
+      .control-label= Setting.human_attribute_name(:title)
+    .col-md-10= @setting.title
+
+  .field-box
+    .col-md-2
+      .control-label= Setting.human_attribute_name(:description)
+    .col-md-10= @setting.description
+
+  = f.text_field_inline :value
+  = f.submit_actions

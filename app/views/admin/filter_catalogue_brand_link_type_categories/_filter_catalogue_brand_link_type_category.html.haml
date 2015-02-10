@@ -1,0 +1,6 @@
+%tr{id: "filter_catalogue_brand_link_type_category_#{filter.id}"}
+  %td= link_to filter.title, [:edit, :admin, :filters_set, id: filter.id]
+  %td.actions_td
+    = link_to [:admin, :filters_set, id: filter.id], method: :delete, confirm: 'Точно удалить?', class: :delete_link, remote: true do
+      %span Удалить
+      %i.icon-trash.icon-large

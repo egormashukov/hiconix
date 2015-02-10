@@ -1,0 +1,42 @@
+.table-wrapper#smart_slides_table
+  = index_header("smart_slides")
+  .row.filter-block
+    .pull-right
+      = search_field
+      -#= link_to action_accusative("smart_slides", "add"), [:new, :admin, :smart_slide], class: "btn-flat success new-product"
+  .row
+
+    = form_tag [:change_visible, :admin, :smart_slides], method: :put do
+      %table.table.table-hover.sortable_table.filterable
+        %thead
+          %tr
+
+            %th.icon
+              %i.icon-check-empty.icon-large.check_all
+            -#%th.icon
+
+            %th.icon.sort_th
+
+            %th.icon
+            %th.sort_th= SmartSlide.human_attribute_name("title")
+            %th.sort_th= SmartSlide.human_attribute_name("link")
+            %th
+        %tbody
+          - @smart_slides.each do |smart_slide|
+            %tr{id: "smart_slide_#{smart_slide.id}"}
+
+              %td.icon= check_box_iconed_tag "smart_slide_ids[]", smart_slide.id
+              -#%td.icon= toggle_visible_link(smart_slide)
+
+              %td.icon= position_handler(smart_slide)
+
+              %td.icon= admin_icon(smart_slide)
+              %td= smart_slide.title
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, smart_slide], class: 'edit_smart_slide'
+                  -#%li= delete_link(smart_slide)
+      -#= visible_buttons
+
+
+= multiple_sortable('smart_slides_table', sort_admin_smart_slides_path)

@@ -1,0 +1,16 @@
+.row.page_header
+  = link_to t(:back), [:admin, :global_settings, :global_menu_items], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("global_menu_items", "edit")
+
+
+=# edit_header(action_accusative("global_menu_items", "edit"), :global_menu_items)
+-#= to_site_link(@global_menu_item)
+.row.form-wrapper
+  .col-md-12= render 'form'
+
+= content_for :page_sidebar_half do
+  %h3= plural_name('sub_menu_items')
+
+  = render 'admin/global_settings/sub_menu_items/sub_menu_items_table'
+
+  = link_to t(:create_new), [:new, :admin, :global_settings, @global_menu_item, :sub_menu_item], class: 'btn btn-primary', id: 'create_new_sub_menu_item'

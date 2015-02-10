@@ -1,0 +1,13 @@
+= form_for [:admin, @content_image], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+
+
+  = f.text_field_inline :title
+  
+
+
+  = f.image_field_with_version :image, :admin_mini
+
+
+  = f.submit_actions

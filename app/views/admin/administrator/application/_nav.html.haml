@@ -1,0 +1,3 @@
+%ul#dashboard-menu
+  -#- if policy(Manager).user_has_rights?
+  %li{class: active_on('managers')}= link_to_nav plural_name('managers'), [:admin, :administrator, :managers], 'icon-link'

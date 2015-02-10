@@ -1,0 +1,27 @@
+.table-wrapper#pages_table
+  = index_header("users")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("users", "add"), [:new, :admin, :global_settings, :user], class: "btn-flat success new-user"
+  .row
+
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %th= User.human_attribute_name("name")
+          %th= User.human_attribute_name("email")
+          %th= User.human_attribute_name("authorization_profile_id")
+          %th
+      %tbody
+        - @users.each do |user|
+          %tr{id: "user_#{user.id}"}
+
+            %td= user.name
+            %td= user.email
+            %td= user.authorization_profile_title
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, :global_settings, user], class: 'edit_user'
+                %li= link_to t(:destroy), [:admin, :global_settings, user], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+

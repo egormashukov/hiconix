@@ -1,0 +1,6 @@
+.gallery_image{id: "low_category_image_#{low_category_image.id}"}
+  = link_to [:edit, :admin, low_category_image] do
+    = image_tag(low_category_image.image_url(:admin_mini), class: 'admin_mini')
+  .image_control_panel
+    = toggle_visible_link(low_category_image)
+    = delete_link_iconed(low_category_image)

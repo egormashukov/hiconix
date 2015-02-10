@@ -1,0 +1,9 @@
+%h3= t(:gallery)
+.image-list#content_images
+  = render content_images
+
+  = image_sortable("content_images")
+  
+.image_upload_form
+  %h3 Загрузить изображения
+  = uploader(content, ContentImage)

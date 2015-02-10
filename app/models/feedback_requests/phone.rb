@@ -1,0 +1,2 @@
+class Phone < FeedbackRequest
+end

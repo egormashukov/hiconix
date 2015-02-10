@@ -1,0 +1,12 @@
+- if !obj.new_record? && obj.image && obj.image_url
+  .row
+    .col-md-10
+      = current_image_version(obj, :crop)
+      = change_versions_button
+      .crop_block
+        = cropbox_image(obj)
+        = crop_panel
+        = preview_image(obj)
+        - ['x','y','w','h'].each do |attribute|
+          = f.hidden_field "crop_#{attribute}"
+        = cropable(obj)

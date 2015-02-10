@@ -1,0 +1,5 @@
+.row
+  %table.table.table-hover#contents_table
+    %tbody= render @contents
+
+= multiple_sortable('contents_table', sort_admin_contents_path)

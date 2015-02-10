@@ -1,0 +1,14 @@
+.row.page_header
+  = link_to t(:back), [:admin, :filters_sets], class: 'btn-flat default'
+  %h2.col-md-10= "Фильтры: Бренд #{@assoc.catalogue_brand_link.id} / Категория #{@assoc.type_category.id}"
+.row.form-wrapper
+  -#.col-md-12= render 'form'
+
+-# ВЫНЕСТИ ВСЕ ЭТО В ФОРМУ
+#filter_catalogue_brand_link_type_categories_form= render 'form'
+
+.row
+  %table.table.table-hover#filter_catalogue_brand_link_type_categories_table
+    %tbody= render partial: 'filter_catalogue_brand_link_type_category', collection: @filters, as: :filter
+
+

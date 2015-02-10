@@ -1,0 +1,16 @@
+= form_for [:admin, @type_category], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.hidden_field_for_redirect(:low_category_id)
+  = f.hidden_field_for_redirect(:catalogue_brand_link_id)
+
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  -#= f.select_inline :brand_id, Brand.all.collect{|b| [b.title, b.id]}
+  -#= f.select_inline :type_category_id, TypeCategory.all.collect{|b| [b.title, b.id]}
+  = f.text_area_inline :teaser_desc
+  = f.redactor :description
+  -#= f.image_field :image
+  -#= f.image_field :hover_image
+  = f.textfielded_select :grouping, TypeCategory.pluck(:grouping).uniq.reject(&:blank?).map { |g| { id: g, text: g } }
+
+  = f.submit_actions

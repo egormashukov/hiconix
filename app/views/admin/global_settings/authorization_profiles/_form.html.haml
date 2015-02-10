@@ -1,0 +1,6 @@
+= form_for [:admin, :global_settings, @profile], builder: AdminFormBuilder do |f|
+  = f.error_messages
+  = f.text_field_inline :title
+  = f.select_inline :policies, AuthorizationProfile.policies_for_select, {}, {multiple: true, class: 'select2'}
+  -#= f.checkbox_inline :local_menu
+  = f.submit_actions

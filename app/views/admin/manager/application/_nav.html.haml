@@ -1,0 +1,4 @@
+%ul#dashboard-menu
+  -#- if policy(Client).user_has_rights?
+  %li{class: active_on('clients')}= link_to_nav plural_name('clients'), [:admin, :manager, :clients], 'icon-link'
+  %li{class: active_on('feedback_requests')}= link_to_nav plural_name('feedback_requests'), [:admin, :manager, :feedback_requests], 'icon-link'

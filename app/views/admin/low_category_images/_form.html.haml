@@ -1,0 +1,7 @@
+= form_for [:admin, @low_category_image], builder: AdminFormBuilder do |f|
+  = f.error_messages
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  = f.image_file_field :image
+  -#= render 'admin/shared/crop', obj: @low_category_image, f: f
+  = f.submit_actions

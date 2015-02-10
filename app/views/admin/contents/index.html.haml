@@ -1,0 +1,63 @@
+.table-wrapper#contents_table
+  = index_header("contents")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("contents", "add"), [:new, :admin, :content], class: "btn-flat success new-product"
+  .row
+
+    = form_tag [:change_visible, :admin, :contents], method: :put do
+      %table.table.table-hover.sortable_table.filterable
+        %thead
+          %tr
+
+            %th.icon
+              %i.icon-check-empty.icon-large.check_all
+            %th.icon
+
+            %th.icon.sort_th
+
+            %th.sort_th= Content.human_attribute_name("title")
+            %th.sort_th= Content.human_attribute_name("metadesc")
+            %th.sort_th= Content.human_attribute_name("teaser_body")
+            %th.sort_th= Content.human_attribute_name("title_image")
+            %th.sort_th= Content.human_attribute_name("slug")
+            %th.sort_th= Content.human_attribute_name("undercut_body")
+            %th.sort_th= Content.human_attribute_name("metakeywords")
+            %th.sort_th= Content.human_attribute_name("ancestry")
+            %th.sort_th= Content.human_attribute_name("start_date")
+            %th.sort_th= Content.human_attribute_name("finish_date")
+            %th.sort_th= Content.human_attribute_name("seo_title")
+            %th.sort_th= Content.human_attribute_name("location")
+            %th.sort_th= Content.human_attribute_name("catalog_image")
+            %th
+        %tbody
+          - @contents.each do |content|
+            %tr{id: "content_#{content.id}"}
+
+              %td.icon= check_box_iconed_tag "content_ids[]", content.id
+              %td.icon= toggle_visible_link(content)
+
+              %td.icon= position_handler(content)
+
+              %td= content.title
+              %td= content.metadesc
+              %td= content.teaser_body
+              %td= content.title_image
+              %td= content.slug
+              %td= content.undercut_body
+              %td= content.metakeywords
+              %td= content.ancestry
+              %td= content.start_date
+              %td= content.finish_date
+              %td= content.seo_title
+              %td= content.location
+              %td= content.catalog_image
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, content], class: 'edit_content'
+                  %li= delete_link(content)
+      = visible_buttons
+
+
+= multiple_sortable('contents_table', sort_admin_contents_path)

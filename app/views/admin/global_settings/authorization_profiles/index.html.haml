@@ -1,0 +1,23 @@
+.table-wrapper#pages_table
+  = index_header("authorization_profiles")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("authorization_profiles", "add"), [:new, :admin, :global_settings, :authorization_profile], class: "btn-flat success new-authorization_profile"
+  .row
+
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %th= AuthorizationProfile.human_attribute_name("title")
+          %th
+      %tbody
+        - @profiles.each do |profile|
+          %tr{id: "authorization_profile_#{profile.id}"}
+
+            %td= profile.title
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, :global_settings, profile], class: 'edit_authorization_profile'
+                %li= link_to t(:destroy), [:admin, :global_settings, profile], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+

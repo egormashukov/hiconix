@@ -1,0 +1,5 @@
+%tr{id: "nested_low_category_#{modify_low_category.id}"}
+  %td= link_to modify_low_category.title, edit_admin_low_category_path(modify_low_category, tenant_id: modify_low_category.tenant.url_scope)
+  %td.actions_td
+    = link_to [:delete_common_category, :admin, :low_category, id: @low_category.id, modify_low_category_id: modify_low_category.id], method: :patch, confirm: 'Точно удалить?', class: :del, remote: true do
+      %span Удалить

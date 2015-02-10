@@ -1,0 +1,6 @@
+%tr{id: "content_#{content.id}"}
+
+  %td.icon= position_handler(content)
+  %td.icon= toggle_visible_link(content)
+  %td= link_to content.title, [:edit, :admin, @block, content]
+  %td.actions_td= remote_delete_link(content)

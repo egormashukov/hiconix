@@ -1,0 +1,3 @@
+%tr{id: "catalogue_brand_link_type_category_#{catalogue_brand_link_type_category.id}"}
+  %td= link_to catalogue_brand_link_type_category.type_category.title, edit_admin_type_category_path(catalogue_brand_link_type_category.type_category)
+  %td.actions_td= remote_delete_link(catalogue_brand_link_type_category)

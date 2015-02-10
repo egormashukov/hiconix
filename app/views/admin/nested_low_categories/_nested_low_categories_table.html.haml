@@ -1,0 +1,3 @@
+%table.table.table-hover#nested_low_categories_table
+  %tbody= render partial: 'admin/nested_low_categories/nested_low_category', collection: @nested_low_categories, as: :modify_low_category
+  -#= multiple_sortable('nested_low_categories_table', sort_admin_nested_low_categories_path)

@@ -1,0 +1,1 @@
+$("#news_item_<%=@news_item.id%>").find(".togglevisible i").first().toggleClass("not_work icon-eye-close").toggleClass("icon-eye-open")

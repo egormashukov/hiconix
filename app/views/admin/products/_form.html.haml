@@ -1,0 +1,14 @@
+= form_for [:admin, @product], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+
+  - if @product.install_description.presence
+    = f.redactor :install_description
+  - else
+    = f.redactor :install_description, value: @product.default_desc
+
+  - if @product.install_teaser_desc.presence
+    = f.text_area_inline :install_teaser_desc
+  - else
+    = f.text_area_inline :install_teaser_desc, value: @product.teaser_desc
+
+  = f.submit_actions

@@ -1,0 +1,12 @@
+%tr{id: "filters_set_#{filter_set.id}"}
+  %td.icon
+    = link_to [:togglevisible, :admin, :filters_set, id: filter_set.id], class: 'togglevisible', remote: true, method: :patch do
+      - content_tag :i, '', class: "icon_large #{filter_set.visible? ? 'icon-eye-open' : 'icon-eye-close not_work'}"
+  %td.icon= position_handler(filter_set)
+
+  %td= link_to filter_set.filter.title, [:edit, :admin, filter_set.filter]
+  %td.actions_td
+    = link_to admin_filters_set_path(id: filter_set.id, filter_catalogue_brand_link_type_category: {catalogue_brand_link_type_category_id: assoc.id}),
+    method: :delete, confirm: 'Точно удалить?', class: :delete_link, remote: true do
+      %span Удалить
+      %i.icon-trash.icon-large

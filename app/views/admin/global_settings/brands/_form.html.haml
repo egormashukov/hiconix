@@ -1,0 +1,11 @@
+= form_for [:admin, :global_settings, @brand], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  -# = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  -# = f.redactor :description
+  = f.image_field :image
+  = f.image_field :hover_image
+  = f.image_field :select_image
+
+  = f.submit_actions

@@ -1,0 +1,21 @@
+.row.page_header
+  = link_to t(:back), [:admin, :aux, :low_categories], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative('low_categories', 'edit')
+
+.row.form-wrapper
+  .col-md-12= render 'form', action: :update
+-#
+-#= content_for :page_sidebar_half do
+-#  %h3= plural_name('type_categories')
+-#  #type_category_low_categories_form= render 'admin/type_category_low_categories/form', low_category: @low_category
+-#  = render 'admin/type_category_low_categories/type_category_low_categories_table'
+-#  = link_to t(:create_new), new_admin_type_category_path(low_category_id: @low_category.id), class: 'btn btn-primary', id: 'create_new_type_category'
+
+  -#= render 'admin/low_category_images/low_category_images', low_category_images:@low_category_images, low_category: @low_category
+
+  -#%h3 Файлы
+  -#= render 'admin/attachment_joins/attachment_joins', attachment_joins: @attachment_joins, attachmentable: @low_category
+  -#
+  -#- if @low_category.is_common_low_category?
+  -#  %h3 Вложеные категории
+  -#  = render 'admin/nested_low_categories/nested_low_categories', current_low_category: @low_category

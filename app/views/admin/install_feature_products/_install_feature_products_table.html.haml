@@ -1,0 +1,5 @@
+.row
+  %table.table.table-hover#install_feature_products_table
+    %tbody= render @install_feature_products
+
+= multiple_sortable('install_feature_products_table', sort_admin_install_feature_products_path)

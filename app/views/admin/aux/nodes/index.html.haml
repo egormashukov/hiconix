@@ -1,0 +1,22 @@
+.table-wrapper#nodes_table
+  = index_header('nodes')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative('nodes', 'add'), [:new, :admin, :aux, :node], class: 'btn-flat success new-user'
+  .row
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %th.icon
+          %th.sort_th= Node.human_attribute_name('node')
+          %th
+      %tbody
+        - @nodes.each do |node|
+          %tr
+            %td.icon= admin_icon(category)
+            %td= node.title.presence
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, :aux, node], class: 'edit_brand'
+                %li= link_to t(:destroy), [:admin, :aux, node], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'

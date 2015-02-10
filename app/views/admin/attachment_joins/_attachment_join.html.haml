@@ -1,0 +1,7 @@
+%tr{id: "attachment_join_#{attachment_join.id}"}
+  %td= link_to attachment_join.attachment.title, [:edit,:admin, :low_category, id: attachment_join.attachmentable.id]
+  %td
+  %td.right
+    = link_to [:admin, attachment_join], method: :delete, confirm: 'Точно удалить?', class: :del, remote: true do
+      %span Удалить
+      %i.icon-trash.icon-large

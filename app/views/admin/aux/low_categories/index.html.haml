@@ -1,0 +1,37 @@
+.table-wrapper#low_categories_table
+  = index_header('low_categories')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative('low_categories', 'add'), [:new, :admin, :aux, :low_category], class: "btn-flat success new-user"
+  .row
+    = form_tag [:change_visible, :admin, :aux, :low_categories], method: :put do
+      %table.table.table-hover.filterable
+        %thead
+          %tr
+            %th.icon
+              %i.icon-check-empty.icon-large.check_all
+            %th.icon
+            %th.icon.sort_th
+            %th.icon
+            %th.sort_th= LowCategory.human_attribute_name("low_category")
+            %th
+        %tbody
+          - @low_categories.each do |category|
+            %tr{id: "low_category_#{category.id}"}
+              %td.icon= check_box_iconed_tag "low_category_ids[]", category.id
+              %td.icon
+                = link_to [:togglevisible, :admin, :aux, category], class: 'togglevisible', remote: true, method: :patch do
+                  - content_tag :i, '', class: "icon_large #{category.visible? ? 'icon-eye-open' : 'icon-eye-close not_work'}"
+
+              %td.icon= position_handler(category)
+              %td.icon= admin_icon(category)
+
+              %td= category.title.presence
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, :aux, category], class: 'edit_brand'
+                  %li= link_to t(:destroy), [:admin, :aux, category], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+      = visible_buttons
+
+= multiple_sortable('low_categories_table', sort_admin_low_categories_path)

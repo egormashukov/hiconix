@@ -1,0 +1,8 @@
+= form_for [:admin, :global_settings, @global_menu_item], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.text_field_inline :title
+  = f.text_field_inline :caption
+  = f.text_field_inline :url
+  = f.select_inline :page_id, Page.all.collect{|p| [p.title, p.id]}, {include_blank: true}, class: "select2"
+
+  = f.submit_actions

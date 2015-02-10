@@ -1,0 +1,7 @@
+-#= to_site_link(@page)
+.row.page_header
+  = link_to t(:back), [:admin, :global_settings, :authorization_profiles], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("authorization_profiles", "edit")
+
+.row.form-wrapper
+  .col-md-12= render 'form'

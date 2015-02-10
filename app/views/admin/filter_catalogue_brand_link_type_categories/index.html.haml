@@ -1,0 +1,21 @@
+.table-wrapper#filters_set_table
+  = index_header('filter_catalogue_brand_link_type_categories')
+  .row
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %td Бренд/Категория по типу
+          - @type_categories.each do |c|
+            %td
+              %b= c.title
+        - @brands.each do |b|
+          %tr
+            %td
+              %b= b.title
+            - @type_categories.each do |c|
+              %td
+                - assoc_id = CatalogueBrandLinkTypeCategory.current_assoc_exists?(c.id, b.id)
+                - if assoc_id
+                  = link_to FilterCatalogueBrandLinkTypeCategory.filters_axists?(assoc_id), [:edit, :admin, :filters_set, id: assoc_id]
+                - else
+                  Не связаны

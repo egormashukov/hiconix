@@ -1,0 +1,7 @@
+= form_tag [:add_common_category, :admin, :low_category], method: :patch, remote: true do
+  .row
+    .col-md-9
+      = select_tag :modify_low_category_id, options_for_select(@loose_low_categories.map{|x| [x.title, x.id]}), {class: 'select2' }
+    .col-md-3
+      = submit_tag t(:add), class: 'btn btn-primary'
+%br

@@ -1,0 +1,1 @@
+$("#install_feature_category_<%=@install_feature_category.id%>").find(".togglevisible i").first().toggleClass("not_work icon-eye-close").toggleClass("icon-eye-open")

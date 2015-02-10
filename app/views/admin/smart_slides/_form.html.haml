@@ -1,0 +1,9 @@
+= form_for [:admin, @smart_slide], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.text_field_inline :title
+  = f.text_field_inline :link
+  = f.text_area_inline :body, rows: 10
+  = f.image_field :image
+  = f.image_field :icon
+
+  = f.submit_actions

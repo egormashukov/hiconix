@@ -1,0 +1,13 @@
+%hr
+%h3= t(:gallery)
+.image-list#low_category_images
+  = form_tag("/admin/low_category_images/low_category_link", method: "post") do
+    - @num = 1
+    = render low_category_images
+
+  = image_sortable("low_category_images")
+%hr
+.image_upload_form
+  %h3 Загрузить изображения
+  = uploader(low_category, LowCategoryImage)
+%br

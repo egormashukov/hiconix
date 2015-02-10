@@ -1,0 +1,23 @@
+= edit_header_with_back(action_accusative("blocks", "edit"), :blocks)
+-#= to_site_link(@block)
+.row.form-wrapper
+  .col-md-12= render 'form'
+%br
+.row
+  .col-md-12
+    %h3 Страницы
+    %table.table.table-hover
+      - @page_blocks.each do |page_block|
+        %tr
+          %td.icon
+            = link_to [:canonical, :admin, page_block], method: :put do
+              %i{:class => (page_block.canonical ? "icon-share-alt icon-large" : "icon-share-alt icon-large not-work")}
+          %td= link_to page_block.page.title, [:edit, :admin, page_block.page]
+
+= content_for :page_sidebar_half do
+
+  %h3= plural_name('contents')
+
+  = render 'admin/contents/contents_table'
+
+  = link_to t(:create_new), [:new, :admin, @block, :content], class: 'btn btn-primary', id: 'create_new_block'

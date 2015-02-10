@@ -1,0 +1,28 @@
+.table-wrapper#clients_table
+  = index_header('clients')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative('clients', 'add'), [:new, :admin, :manager, :client], class: 'btn-flat success'
+  .row
+    = form_tag [:change_managers, :admin, :manager, :clients] do
+      %table.table.table-hover.filterable
+        %thead
+          %tr
+            - Client::SHOW_INDEX_FIELDS.each do |field|
+              %th= Client.human_attribute_name(field)
+            %th= Client.human_attribute_name('manager')
+            - if current_is_administrator?
+              %th
+        %tbody
+          - @clients.each do |client|
+            %tr{id: "client_#{client.id}"}
+              - Client::SHOW_INDEX_FIELDS.each do |field|
+                %td= client.send(field)
+              - if current_is_administrator?
+                %td= select_tag "managers_ids[#{client.id}]", options_for_select(Manager.has_not_that_manager(nil), client.manager.try(:id)), class: 'select2'
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, :manager, client], class: 'edit_client'
+                  %li= link_to t(:destroy), [:admin, :manager, client], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'
+      = submit_tag(t(:save), class: 'btn btn-info small-button')

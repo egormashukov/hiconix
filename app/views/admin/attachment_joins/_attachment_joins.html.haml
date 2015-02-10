@@ -1,0 +1,5 @@
+#attachment_joins_form= render 'admin/attachment_joins/form', attachmentable: attachmentable
+%br
+%table.sort_table.table.table-hover.attachments#low_category_attachment_joins_table
+  %tbody= render @attachment_joins
+= multiple_sortable('low_category_attachment_joins_table', sort_admin_attachment_joins_path)

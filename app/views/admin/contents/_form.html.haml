@@ -1,0 +1,18 @@
+= form_for [:admin, @block, @content], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.checkbox_inline :visible
+
+  = f.text_field_inline :title
+
+  = f.redactor :teaser_body
+  = f.redactor :undercut_body
+  = f.image_field :title_image
+
+  = f.text_field_inline :seo_title
+  = f.text_field_inline :metakeywords
+  = f.text_area_inline :metadesc
+
+  = f.date_select_bootstrap :start_date
+  = f.date_select_bootstrap :finish_date
+  
+  = f.submit_actions

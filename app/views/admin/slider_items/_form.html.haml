@@ -1,0 +1,8 @@
+= form_for [:admin, @page, @slider_item], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.checkbox_inline :visible
+  = f.text_area_inline :body, rows: 10
+  = f.image_file :slider_image
+  = f.checkbox_inline :title_mode
+  -#= f.select_two :geo_set_id, @geo_sets.collect {|x| [x.title, x.id]}, :include_blank => true
+  = f.submit_actions

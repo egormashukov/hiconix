@@ -1,0 +1,12 @@
+= form_for @brand, url: { controller: 'catalogue_brand_links', action: action},
+  method: (action == :create ? :post : :patch), builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.hidden_field_for_redirect(:type_category_id)
+
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  = f.select_inline :brand_id, Brand.all.collect{|b| [b.title, b.id]}
+  = f.text_area_inline :teaser_desc
+  = f.redactor :description
+
+  = f.submit_actions

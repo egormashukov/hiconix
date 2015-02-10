@@ -1,0 +1,22 @@
+= edit_header_with_back(action_accusative("pages", "edit"), :pages)
+-#= to_site_link(@page)
+
+.row.filter-block
+  .btn-group
+    - if @page.main?
+      .glow.large= link_to 'A-слайды', [:admin, :smart_slides]
+      .glow.large= link_to 'B-слайды', [:admin, :slider_items]
+    - else
+      .glow.large= link_to 'блок-информер', (@page.has_block_informer? ? [:edit, :admin, @page, @page.slider_items.first] : [:new, :admin, @page, :slider_item])
+%br
+.row.form-wrapper
+  .col-md-12= render 'form'
+
+= content_for :page_sidebar_third do
+
+  %h3= plural_name('blocks')
+  - unless @page.main?
+    #page_blocks_form= render 'admin/page_blocks/form', page: @page
+  = render 'admin/page_blocks/page_blocks_table'
+  - unless @page.main?
+    = link_to t(:create_new), new_admin_block_path(page_id: @page.id), class: 'btn btn-primary', id: 'create_new_block'

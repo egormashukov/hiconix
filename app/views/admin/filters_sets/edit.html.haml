@@ -1,0 +1,17 @@
+.row.page_header
+  = link_to t(:back), [:admin, :filters_sets], class: 'btn-flat default'
+  %h2.col-md-10= "Фильтры: Бренд #{@assoc.catalogue_brand_link.id} / Категория #{@assoc.type_category.id}"
+
+#filters_sets_form= render 'form'
+
+.row
+  %table.table.table-hover#filter_catalogue_brand_link_type_category_table
+    %thead
+      %tr
+        %th.icon
+        %th.icon.sort_th
+        %th.icon
+        %th.icon
+    %tbody= render partial: 'filter_catalogue_brand_link_type_category', collection: @filters_set, as: :filter_set, locals: {assoc: @assoc}
+
+= multiple_sortable('filter_catalogue_brand_link_type_category_table', sort_admin_filters_sets_path)

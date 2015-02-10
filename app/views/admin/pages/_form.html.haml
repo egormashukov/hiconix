@@ -1,0 +1,14 @@
+= form_for [:admin, @page], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.text_field_inline :title
+  - if @page.new_record?
+    = f.text_field_inline :slug
+  - else
+    = f.text_field_inline :slug, readonly: true
+  = f.redactor :body
+  = f.text_field_inline :seo_title
+  = f.text_field_inline :metadesc
+  = f.text_area_inline :metakeywords
+  = f.checkbox_inline :print_link
+  -#= f.checkbox_inline :local_menu
+  = f.submit_actions

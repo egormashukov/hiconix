@@ -1,0 +1,43 @@
+.table-wrapper#brand_links_table
+  = index_header("brand_links")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("brand_links", "add"), [:new, :admin, :brand_link], class: "btn-flat success new-product"
+  .row
+
+    = form_tag [:change_visible, :admin, :brand_links], method: :put do
+      %table.table.table-hover.sortable_table.filterable
+        %thead
+          %tr
+
+            %th.icon
+              %i.icon-check-empty.icon-large.check_all
+            %th.icon
+
+            %th.icon.sort_th
+
+            %th.icon
+
+            %th.sort_th= BrandLink.human_attribute_name("brand_id")
+            %th
+        %tbody
+          - @brand_links.each do |brand_link|
+            %tr{id: "brand_link_#{brand_link.id}"}
+
+              %td.icon= check_box_iconed_tag "brand_link_ids[]", brand_link.id
+              %td.icon= toggle_visible_link(brand_link)
+
+              %td.icon= position_handler(brand_link)
+
+              %td.icon= admin_icon(brand_link)
+
+              %td= brand_link.title.presence || brand_link.brand.try(:title)
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, brand_link], class: 'edit_brand_link'
+                  %li= delete_link(brand_link)
+      = visible_buttons
+
+
+= multiple_sortable('brand_links_table', sort_admin_brand_links_path)

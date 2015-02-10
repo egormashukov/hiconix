@@ -1,0 +1,1 @@
+$("#catalogue_brand_link_type_category_<%=@catalogue_brand_link_type_category.id%>").find(".togglevisible i").first().toggleClass("not_work icon-eye-close").toggleClass("icon-eye-open")

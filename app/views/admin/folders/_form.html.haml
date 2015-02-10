@@ -1,0 +1,7 @@
+= form_for [:admin, @folder], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  = f.text_field_inline :title
+  = f.redactor :description
+
+  = f.submit_actions

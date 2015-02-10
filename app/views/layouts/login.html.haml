@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html;charset=UTF-8"}
+    %title Вход в административную панель
+    = stylesheet_link_tag 'admin'
+    = javascript_include_tag "admin"
+    = csrf_meta_tag
+  %body.login_layout
+    .login-wrapper
+      .box
+        .content-wrap
+          %h6 Административная панель
+          = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+            = f.text_field :email, placeholder: 'email', class: 'form-control'
+            = f.password_field :password, placeholder: 'password', class: 'form-control'
+            = f.submit t(:log_in), class: 'btn-glow primary login', id: 'login'

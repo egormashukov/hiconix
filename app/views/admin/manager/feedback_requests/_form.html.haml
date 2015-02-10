@@ -1,0 +1,16 @@
+%table
+  %tr
+    %td= ::FeedbackRequest.human_attribute_name('body')
+    %td= raw @feedback_request.body
+  %tr
+    %td= ::FeedbackRequest.human_attribute_name('state')
+    %td= raw @feedback_request.state
+  %tr
+    %td= ::FeedbackRequest.human_attribute_name('created_at')
+    %td= raw @feedback_request.created_at
+  %tr
+    %td= ::FeedbackRequest.human_attribute_name('type')
+    %td= raw @feedback_request.type
+  %tr
+    %td= ::FeedbackRequest.human_attribute_name('contact_data')
+    %td= raw @feedback_request.contact_data

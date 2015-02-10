@@ -1,0 +1,18 @@
+%ul#dashboard-menu
+  - if policy(GlobalMenuItem).user_has_rights?
+    %li{class: active_on('global_menu_items')}= link_to_nav plural_name('global_menu_items'), [:admin, :global_settings, :global_menu_items], 'icon-link'
+
+  - if policy(User).user_has_rights?
+    %li{class: active_on('authorization_profiles')}= link_to_nav plural_name('authorization_profiles'), [:admin, :global_settings, :authorization_profiles], 'icon-key'
+    %li{class: active_on('users')}= link_to_nav plural_name('users'), [:admin, :global_settings, :users], 'icon-user'
+    %li{class: active_on('brands')}= link_to_nav plural_name('brands'), [:admin, :global_settings, :brands], 'icon-apple'
+
+-#
+  %li{class: active_on('global_menu_items')}= link_to_nav plural_name('global_menu_items'), [:admin, :global_menu_items], 'icon-link'
+  %li{class: active_on('pages')}= link_to_nav plural_name('pages'), [:admin, :pages], 'icon-file-text-alt'
+  %li{class: active_on('blocks')}= link_to_nav plural_name('blocks'), [:admin, :blocks], 'icon-th-large'
+  %li{class: active_on('smart_slides')}= link_to_nav plural_name('smart_slides'), [:admin, :smart_slides], 'icon-picture'
+  %li{class: active_on('category_menu_items')}= link_to_nav plural_name('category_menu_items'), [:admin, :category_menu_items], 'icon-list-ol'
+  %li{class: active_on('bslide_menu_items')}= link_to_nav plural_name('bslide_menu_items'), [:admin, :bslide_menu_items], 'icon-th-large'
+  %li{class: active_on('news_items')}= link_to_nav plural_name('news_items'), [:admin, :news_items], 'icon-globe'
+  %li{class: active_on('settings')}= link_to_nav plural_name('settings'), [:admin, :settings], 'icon-cogs'

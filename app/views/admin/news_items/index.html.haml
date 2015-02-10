@@ -1,0 +1,29 @@
+.table-wrapper#news_items_table
+  = index_header("news_items")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("news_items", "add"), [:new, :admin, :news_item], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+
+          %th.icon.sort_th
+          %th= NewsItem.human_attribute_name("title")
+          %th= NewsItem.human_attribute_name("url")
+          %th
+      %tbody
+        - @news_items.each do |news_item|
+          %tr{id: "news_item_#{news_item.id}"}
+
+            %td.icon= position_handler(news_item)
+            %td= news_item.title
+            %td= news_item.url
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, news_item], class: 'edit_news_item'
+                %li= delete_link(news_item)
+
+= multiple_sortable('news_items_table', sort_admin_news_items_path)

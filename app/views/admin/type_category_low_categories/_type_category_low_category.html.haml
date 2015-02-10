@@ -1,0 +1,3 @@
+%tr{id: "type_category_low_category_#{type_category_low_category.id}"}
+  %td= link_to type_category_low_category.type_category.title, edit_admin_type_category_path(type_category_low_category.type_category)
+  %td.actions_td= remote_delete_link(type_category_low_category)

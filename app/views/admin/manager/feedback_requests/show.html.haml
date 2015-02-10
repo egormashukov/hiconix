@@ -1,0 +1,19 @@
+.row.page_header
+  = link_to t(:back), [:admin, :manager, :feedback_requests], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative('feedback_requests', 'edit')
+
+.row.form-wrapper
+  .col-md-12
+    %table
+      %tbody
+        - %w{body state created_at type contact_data}.each do |field|
+          %tr
+            %td= ::FeedbackRequest.human_attribute_name(field)
+            %td{class: "feedback_request_#{field}"}= raw @feedback_request[field]
+
+    - if @feedback_request.email_type?
+      = link_to t(:write_letter), 'javascript:;', class: 'btn-flat success post_contact_client', 'data-action' => 'client_mails'
+    - elsif @feedback_request.phone_type?
+      = link_to t(:call), 'javascript:;', class: 'btn-flat success post_contact_client', 'data-action' => 'client_calls'
+    - else
+      = link_to t(:close_request), [:admin, :manager, :feedback_requests], class: 'btn-flat success'

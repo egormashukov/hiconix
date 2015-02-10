@@ -1,0 +1,11 @@
+.row.page_header
+  = link_to t(:back), [:admin, :type_categories], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("type_categories", "edit")
+.row.form-wrapper
+  .col-md-12
+    = render 'form', action: :update
+= content_for :page_sidebar_half do
+  %h3= plural_name('brand')
+  #type_category_catalogue_brand_links_form= render 'admin/type_category_catalogue_brand_links/form', type_category: @type_category
+  = render 'admin/type_category_catalogue_brand_links/type_category_catalogue_brand_links_table'
+  = link_to t(:create_new), new_admin_brand_path(type_category_id: @type_category.id), class: 'btn btn-primary', id: 'create_new_catalogue_brand_link'

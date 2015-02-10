@@ -1,0 +1,10 @@
+= form_for [:admin, @bslide_menu_item], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  = f.text_field_inline :title
+  = f.image_field :caption
+  
+  = f.text_field_inline :url
+  = f.select_inline :page_id, Page.all.collect{|p| [p.title, p.id]}, {include_blank: true}, class: "select2"
+
+  = f.submit_actions

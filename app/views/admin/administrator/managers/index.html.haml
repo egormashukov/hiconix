@@ -1,0 +1,23 @@
+.table-wrapper#managers_table
+  = index_header('manager')
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative('managers', 'add'), [:new, :admin, :administrator, :manager], class: 'btn-flat success'
+  .row
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          %th= Manager.human_attribute_name('manager')
+          %th= Manager.human_attribute_name('clients_count')
+          %th
+          %th
+      %tbody
+        - @managers.each do |manager|
+          %tr{id: "manager_#{manager.id}"}
+            %td= manager.full_person_name
+            %td= manager.clients.count
+            %td
+              %ul.actions
+                %li= link_to t(:settings), [:edit, :admin, :administrator, manager], class: 'edit_manager'
+                %li= link_to t(:destroy), [:admin, :administrator, manager], method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'

@@ -1,0 +1,10 @@
+= form_for [:admin, :administrator, @manager], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  = f.text_field_inline :first_name
+  = f.text_field_inline :family_name
+  = f.text_field_inline :patronymic_name
+  = f.select_inline :vice_mananger_id, Manager.has_not_that_manager(@manager.id), {}, class: 'select2'
+  = f.checkbox_inline :on_duty
+
+  = f.submit_actions

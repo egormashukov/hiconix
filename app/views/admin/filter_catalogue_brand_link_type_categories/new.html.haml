@@ -1,0 +1,6 @@
+.row.page_header
+  = link_to t(:back), [:admin, :filter_catalogue_brand_link_type_categories], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("filters_set", "add")
+
+.row.form-wrapper
+  .col-md-12= render 'form'

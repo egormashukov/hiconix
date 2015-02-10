@@ -1,0 +1,24 @@
+.table-wrapper#feedback_requests_table
+  = index_header('feedback_requests')
+  .row.filter-block
+    .pull-right
+      = search_field
+  .row
+    %table.table.table-hover.filterable
+      %thead
+        %tr
+          - %w{created_at client manager state}.each do |field|
+            %th= ::FeedbackRequest.human_attribute_name(field)
+          %th
+      %tbody
+        - @feedback_requests.each do |request|
+          %tr{id: "feedback_request_#{request.id}"}
+            %td= request.created_at
+            -# TODO как ставить клиента ?
+            %td= 'client?'
+            %td= request.manager.try(:full_person_name)
+            %td= request.state
+            %td
+              %ul.actions
+                %li= link_to t(:open), admin_manager_feedback_request_path(request), class: 'show_request'
+                %li= link_to t(:destroy), admin_manager_feedback_request_path(request), method: :delete, data: {confirm: t('confirm.delete')}, class: 'delete_link'

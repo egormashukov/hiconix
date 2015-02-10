@@ -1,0 +1,9 @@
+= form_for [:admin, @category_menu_item], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+  = f.text_field_inline :url
+  
+  = f.submit_actions

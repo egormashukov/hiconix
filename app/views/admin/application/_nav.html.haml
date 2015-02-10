@@ -1,0 +1,41 @@
+%ul#dashboard-menu
+  - if policy(Page).user_has_rights?(current_tenant)
+    %li{class: active_on('pages')}= link_to_nav plural_name('pages'), [:admin, :pages], 'icon-file-text-alt'
+  - if policy(Block).user_has_rights?(current_tenant)
+    %li{class: active_on('blocks')}= link_to_nav plural_name('blocks'), [:admin, :blocks], 'icon-th-large'
+  - if policy(SliderItem).user_has_rights?(current_tenant)
+    %li{class: active_on(['smart_slides', 'bslide_menu_items'])}
+      = link_to '#', class: 'dropdown-toggle' do
+        = arrow_pointer + content_tag(:i, '', class: 'icon-picture') + content_tag(:span, 'Слайдеры')
+      %ul.submenu{class: active_on(['smart_slides', 'bslide_menu_items'])}
+        %li= link_to 'Cлайдер гармошка', [:admin, :smart_slides], class: active_on('smart_slides')
+        %li= link_to 'Cлайдер плитка', [:admin, :bslide_menu_items], class: active_on('bslide_menu_items')
+
+
+  - if policy(BrandLink).user_has_rights?(current_tenant)
+    %li{class: active_on('brand_links')}= link_to_nav plural_name('brand_links'), [:admin, :brand_links], 'icon-apple'
+  - if policy(CategoryMenuItem).user_has_rights?(current_tenant)
+    %li{class: active_on('category_menu_items')}= link_to_nav plural_name('category_menu_items'), [:admin, :category_menu_items], 'icon-list-ol'
+  - if policy(NewsItem).user_has_rights?(current_tenant)
+    %li{class: active_on('news_items')}= link_to_nav plural_name('news_items'), [:admin, :news_items], 'icon-globe'
+  - if policy(Setting).user_has_rights? && current_tenant.url_scope == 'vizitka'
+    %li{class: active_on('settings')}= link_to_nav plural_name('settings'), [:admin, :settings], 'icon-cogs'
+
+  -# TODO: do policy for menu below policy(CatalogueBrandLink).user_has_rights? &&
+  - if ['aircon', 'ventilation', 'heatpumps', 'vrv'].include? current_tenant.url_scope
+
+    - if policy(:catalog_brand).user_has_rights?
+      %li{class: active_on('catalogue_brand_links')}= link_to_nav plural_name('catalogue_brand_links'), [:admin, :brands], 'icon-apple'
+
+    - if policy(:catalog_type_category).user_has_rights?
+      %li{class: active_on('type_categories')}= link_to_nav plural_name('type_categories'), [:admin, :type_categories], 'icon-list-ol'
+
+    - if policy(:catalog_low_category).user_has_rights?
+      %li{class: active_on('low_categories')}= link_to_nav plural_name('low_categories'), [:admin, :low_categories], 'icon-th-large'
+
+    - if policy(:catalog_filter).user_has_rights?
+      %li{class: active_on('filters')}= link_to_nav plural_name('filters'), [:admin, :filters], 'icon-link'
+
+      %li{class: active_on('filters_sets')}= link_to_nav plural_name('filter_catalogue_brand_link_type_categories'), [:admin, :filters_sets], 'icon-link'
+
+      -#%li{class: active_on('folders')}= link_to_nav plural_name('folders'), [:admin, :folders], 'icon-link'

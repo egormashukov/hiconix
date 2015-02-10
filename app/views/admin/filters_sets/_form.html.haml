@@ -1,0 +1,9 @@
+= form_for [:admin, FilterCatalogueBrandLinkTypeCategory.new], url: admin_filters_sets_path, method: :post, remote: true do |f|
+  .row
+    .col-md-9
+      = f.select :filter_id, Filter.all.has_not_that_catalogue_brand_link_type_category(@assoc.id), {}, class: 'select2'
+      -#= f.select :filter_id, Filter.all.collect { |e| [e.title, e.id]}, {}, class: 'select2'
+    .col-md-3
+      = f.hidden_field :catalogue_brand_link_type_category_id, value: @assoc.id
+      = f.submit t(:add), class: 'btn btn-primary'
+%br

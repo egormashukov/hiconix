@@ -1,0 +1,36 @@
+.table-wrapper#slider_items_table
+  = index_header("slider_items")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("slider_items", "add"), [:new, :admin, @page, :slider_item], class: "btn-flat success new-product"
+  .row
+
+    = form_tag [:change_visible, :admin, :slider_items], method: :put do
+      %table.table.table-hover.sortable_table.filterable
+        %thead
+          %tr
+            %th.icon
+              %i.icon-check-empty.icon-large.check_all
+            %th.icon
+            %th.icon.sort_th
+
+            %th.sort_th= SliderItem.human_attribute_name("slider_image")
+            %th
+        %tbody
+          - @slider_items.each do |slider_item|
+            %tr{id: "slider_item_#{slider_item.id}"}
+
+              %td.icon= check_box_iconed_tag "slider_item_ids[]", slider_item.id
+              %td.icon= toggle_visible_link(slider_item)
+
+              %td.icon= position_handler(slider_item)
+              %td= image_tag slider_item.slider_image_url, class: "slider-img"
+              %td
+                %ul.actions
+                  %li= link_to t(:edit), [:edit, :admin, @page, slider_item], class: 'edit_slider_item'
+                  %li= delete_link(slider_item)
+      = visible_buttons
+
+
+= multiple_sortable('slider_items_table', sort_admin_slider_items_path)

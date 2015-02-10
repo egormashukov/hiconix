@@ -1,0 +1,7 @@
+= form_for [:admin, attachmentable, AttachmentJoin.new], url: admin_low_category_attachment_joins_path(low_category_id: attachmentable.id), remote: true do |f|
+  = f.hidden_field :attachmentable_id, value: attachmentable.id
+  .row
+    .col-md-9
+      = f.select :attachment_id,  Attachment.has_not_that_attachmentable(attachmentable.id), {include_blank: true, prompt: 'add attachment' }, class: 'select2'
+    .col-md-3
+      = f.submit t(:add), class: 'btn btn-primary'

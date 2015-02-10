@@ -1,0 +1,1 @@
+$("#type_category_low_category_<%=@type_category_low_category.id%>").find(".togglevisible i").first().toggleClass("not_work icon-eye-close").toggleClass("icon-eye-open")

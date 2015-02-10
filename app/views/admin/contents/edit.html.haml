@@ -1,0 +1,8 @@
+= edit_header_with_path(action_accusative("contents", "edit"), [:edit, :admin, @content.block])
+-#= to_site_link(@content)
+.row.form-wrapper
+  .col-md-12= render 'form'
+
+= content_for :page_sidebar_third do
+
+  = render 'admin/content_images/content_images', content_images:@content_images, content: @content

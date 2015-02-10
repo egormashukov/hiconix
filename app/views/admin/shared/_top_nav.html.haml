@@ -1,0 +1,21 @@
+.navbar-top-nav
+  = link_to 'Визитка', admin_root_path(tenant_id: 'vizitka'), class: "navbar-top-nav__link #{'_active' if 'vizitka' == current_tenant.try(:url_scope) }"
+  = link_to 'Опт', admin_root_path(tenant_id: 'opt'), class: "navbar-top-nav__link #{'_active' if 'opt' == current_tenant.try(:url_scope)}"
+  = link_to 'Запчасти', admin_root_path(tenant_id: 'parts'), class: "navbar-top-nav__link #{'_active' if 'parts' == current_tenant.try(:url_scope)}"
+  = link_to 'Сервис', admin_root_path(tenant_id: 'service'), class: "navbar-top-nav__link #{'_active' if 'service' == current_tenant.try(:url_scope)}"
+  = link_to 'Aircon', admin_root_path(tenant_id: 'aircon'), class: "navbar-top-nav__link #{'_active' if 'aircon' == current_tenant.try(:url_scope)}"
+  = link_to 'Ventilation', admin_root_path(tenant_id: 'ventilation'), class: "navbar-top-nav__link #{'_active' if 'ventilation' == current_tenant.try(:url_scope)}"
+  = link_to 'Heatpumps', admin_root_path(tenant_id: 'heatpumps'), class: "navbar-top-nav__link #{'_active' if 'heatpumps' == current_tenant.try(:url_scope)}"
+  = link_to 'Vrv', admin_root_path(tenant_id: 'vrv'), class: "navbar-top-nav__link #{'_active' if 'vrv' == current_tenant.try(:url_scope)}"
+  = link_to 'Глобальные', admin_global_settings_root_path(tenant_id: nil), class: "navbar-top-nav__link #{'_active' if false}"
+  = link_to 'Менеджер', admin_manager_clients_path(tenant_id: nil), class: "navbar-top-nav__link #{'_active' if false}"
+  - if current_is_administrator?
+    = link_to 'Администратор', admin_administrator_managers_path(tenant_id: nil), class: "navbar-top-nav__link #{'_active' if false}"
+  = link_to 'AUX', admin_aux_root_path(tenant_id: nil), class: "navbar-top-nav__link #{'_active' if false}"
+
+  -# TODO: _active if current namespace
+  -#module ApplicationHelper
+  -#  def admin?
+  -#    controller.class.name.split("::").first=="Admin"
+  -#  end
+  -#end

@@ -1,0 +1,6 @@
+.row.page_header
+  = link_to t(:back), [:admin, :folders], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative('folders', 'add')
+
+.row.form-wrapper
+  .col-md-12= render 'form'

@@ -1,0 +1,6 @@
+.row.page_header
+  = link_to t(:back), [:admin, :global_settings, :users], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("users", "add")
+
+.row.form-wrapper
+  .col-md-12= render 'form'

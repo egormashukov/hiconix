@@ -1,0 +1,42 @@
+-#= edit_header(action_accusative("products", "edit"), :products)
+-#= to_site_link(@product)
+
+%h2= @product.title
+.row.form-wrapper
+  .col-md-12= render 'form'
+%br
+%h3 Характеристики
+%table.table.table-hover
+  - @product.product_properties.each do |product_property|
+    %tr
+      %td= product_property.property.title
+      %td= product_property.value.try(:title)
+
+= content_for :page_sidebar_half do
+
+  %h3= plural_name('install_features')
+
+  #install_feature_products_form= render 'admin/install_feature_products/form', product: @product
+
+  = render 'admin/install_feature_products/install_feature_products_table'
+
+  = link_to t(:create_new), new_admin_install_feature_path(product_id: @product.id), class: 'btn btn-primary', id: 'create_new_install_feature'
+  %br
+  %br
+  %h3 Связанные блоки
+  %table.table.table-hover
+    - RelatedProduct.all_similar_to(@product).includes(:product, :related_product).each do |rp|
+      %tr{id: "related_product_#{rp.id}"}
+        %td.icon= new_toggle_visible_link(rp, :install_visible)
+        - if @product.id == rp.related_product_id
+          %td= link_to rp.product.title, [:edit, :admin, rp.product]
+        - else
+          %td= link_to rp.related_product.title, [:edit, :admin, rp.related_product]
+  %br
+
+  %h3 Опции
+  %table.table.table-hover
+    - @product.product_options.includes(:product_option).each do |product_option|
+      %tr{id: "product_option_#{product_option.id}"}
+        %td.icon= new_toggle_visible_link(product_option, :install_visible)
+        %td= link_to product_option.product_option.title, [:edit, :admin, product_option.product_option]

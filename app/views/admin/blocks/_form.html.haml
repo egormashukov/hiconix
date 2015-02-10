@@ -1,0 +1,10 @@
+= form_for [:admin, @block], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+  = f.hidden_field_for_redirect(:page_id)
+
+  - if @block.untouchable?
+    = f.text_field_inline :title, disabled: true
+  - else
+    = f.text_field_inline :title
+  
+  = f.submit_actions

@@ -1,0 +1,40 @@
+= form_for [:admin, @category, @product_set], builder: AdminAddonFormBuilder do |f|
+  = f.error_messages
+
+  %h2 Описание комплекта
+  = f.checkbox_inline :visible
+  = f.text_field_inline :title
+
+  - if @product_set.persisted? && !@product_set.description.presence
+    = f.redactor :description, value: @products.collect(&:description).join
+  - else
+    = f.redactor :description
+
+  - if @product_set.persisted? && !@product_set.teaser.presence
+    = f.text_area_inline :teaser, value: @products.collect(&:teaser_desc).join
+  - else
+    = f.text_area_inline :teaser
+
+  = f.checkbox_inline :show_options
+  = f.checkbox_inline :show_related
+  = f.image_field :image
+
+  %h2 Связанные блоки товара #{@product_set.product.title}
+  = f.hidden_field :product_id, value: f.object.product_id.presence || params[:product_id]
+
+  = hidden_field_tag "product_set[products_ids][]", f.object.product_id
+
+  - RelatedProduct.all_similar_to(@product_set.product).includes(:product, :related_product).each do |rp|
+    - if @product_set.product.id == rp.related_product_id
+      - val = rp.product_id
+      - title = rp.product.title
+
+    - else
+      - val = rp.related_product_id
+      - title = rp.related_product.title
+    .checkboxes-list
+      .row
+        = label_tag "products_ids_#{rp.id}", title
+        = check_box_tag "product_set[products_ids][]", val, f.object.has_product?(val), id: "products_ids_#{rp.id}"
+    
+  = f.submit_actions

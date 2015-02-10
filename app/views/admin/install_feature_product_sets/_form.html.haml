@@ -1,0 +1,7 @@
+= form_for [:admin, InstallFeatureProductSet.new], builder: AdminAddonFormBuilder, remote: true do |f|
+  .row
+    .col-md-9= f.select :install_feature_id, options_for_select(InstallFeature.has_not_that_product_set(product_set.id)), {}, class: "select2"
+    .col-md-3
+      = f.hidden_field :product_set_id, value: product_set.id
+      = f.submit t(:add), class: 'btn btn-primary'
+%br

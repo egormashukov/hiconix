@@ -1,0 +1,25 @@
+.table-wrapper#pages_table
+  = index_header("pages")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("pages", "add"), [:new, :admin, :page], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+          %th= Page.human_attribute_name("title")
+          %th
+          %th
+      %tbody
+        - @pages.each do |page|
+          %tr{id: "page_#{page.id}"}
+
+            %td= page.title
+            %td= link_to_if page.try(:slug).presence, "/#{page.slug}", "http://hiconix.ru/#{page.slug}", target: "_blank"
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, page], class: 'edit_page'
+                %li= delete_link(page) unless page.main?
+

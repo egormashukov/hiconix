@@ -1,0 +1,7 @@
+.row.page_header
+  = link_to t(:back), [:admin, :global_settings, :global_menu_items], class: 'btn-flat default'
+  %h2.col-md-10= action_accusative("global_menu_items", "edit")
+
+=# edit_header(action_accusative("global_menu_items", "add"), :global_menu_items)
+.row.form-wrapper
+  .col-md-12= render 'form'

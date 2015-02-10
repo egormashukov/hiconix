@@ -1,0 +1,33 @@
+.table-wrapper#products_table
+  = index_header("products")
+  .row.filter-block
+    .pull-right
+      = search_field
+      = link_to action_accusative("products", "add"), [:new, :admin, :product], class: "btn-flat success new-product"
+  .row
+
+    %table.table.table-hover.sortable_table.filterable
+      %thead
+        %tr
+
+
+
+          %th= Product.human_attribute_name("title")
+          %th
+      %tbody
+        - @products.each do |product|
+          %tr{id: "product_#{product.id}"}
+
+            %td= product.title
+            %td= product.current
+            %td= product.description
+            %td= product.teaser_desc
+            %td= product.slug
+            %td= product.hiconix_code
+            %td= product.ready
+            %td= product.description_for_front
+            %td
+              %ul.actions
+                %li= link_to t(:edit), [:edit, :admin, product], class: 'edit_product'
+                %li= delete_link(product)
+

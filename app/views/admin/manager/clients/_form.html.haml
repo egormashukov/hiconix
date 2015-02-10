@@ -1,0 +1,20 @@
+= form_for [:admin, :manager, @client], builder: AdminFormBuilder do |f|
+  = f.error_messages
+
+  = f.text_field_inline :first_name
+  = f.text_field_inline :family_name
+  = f.text_field_inline :patronymic_name
+  = f.text_field_inline :company_title
+  = f.text_field_inline :phone
+  = f.email_field_inline :email
+  = f.redactor :contacts
+  - if current_is_administrator?
+    = f.select_inline :manager_id, Manager.has_not_that_manager(nil), {}, class: 'select2'
+  = f.redactor :comment
+  .field-box
+    .col-md-2
+      = f.label :code_1c, class: 'control-label'
+    .col-md-10
+      = f.text_field :code_1c, readonly: true, class: 'form-control'
+
+  = f.submit_actions

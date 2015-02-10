@@ -1,0 +1,5 @@
+.row
+  %table.table.table-hover#sub_menu_items_table
+    %tbody= render @sub_menu_items
+
+= multiple_sortable('sub_menu_items_table', sort_admin_global_settings_sub_menu_items_path)
